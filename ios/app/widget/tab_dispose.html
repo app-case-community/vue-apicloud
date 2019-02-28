@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="maximum-scale=1,minimum-scale=1,user-scalable=0,width=device-width,initial-scale=1"><meta name=format-detection content="telephone=no,email=no,date=no,address=no"><title>frame</title><link rel=stylesheet type=text/css href=./static/apicloud/css/api.css><link rel=stylesheet type=text/css href=./static/aui/css/api.css><link rel=stylesheet type=text/css href=./static/aui/css/aui.css><link href=js/chunk-vendors.1e5ba512.js rel=preload as=script><link href=js/tab_dispose.5b2e0733.js rel=preload as=script></head><body><div id=app></div><script src=./static/apicloud/js/api.js></script><script src=./static/js/init.js></script><script>$init(function () {
+            if (api.pageParam.refresh) {
+                api.setRefreshHeaderInfo({
+                    bgColor: '#ccc',
+                    textColor: '#fff',
+                    textDown: '下拉刷新...',
+                    textUp: '松开刷新...'
+                }, function (ret, err) {
+                    //在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
+                    refreshData()
+                });
+            }
+        })</script><script src=js/chunk-vendors.1e5ba512.js></script><script src=js/tab_dispose.5b2e0733.js></script></body></html>

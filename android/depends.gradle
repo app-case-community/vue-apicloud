@@ -1,0 +1,26 @@
+ext.deps = [:]
+def versions = [:]
+versions.support = "1.0.0"
+versions.constraint = "1.1.3"
+
+def deps = [:]
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+deps.kotlin = kotlin
+
+def jetpack = [:]
+jetpack.work = "android.arch.work:work-runtime:$versions.work"
+deps.jetpack = jetpack
+
+def android = [:]
+android.appcompat = "androidx.appcompat:appcompat:$versions.support"
+android.constraint = "androidx.constraintlayout:constraintlayout:$versions.constraint"
+deps.android = android
+
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 23
+build_versions.target_sdk = 28
+ext.build_versions = build_versions

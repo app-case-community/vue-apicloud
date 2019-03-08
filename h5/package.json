@@ -6,12 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "clean:android:app": "rm -rf ./../android/app/src/main/assets/widget/**",
-    "copy:android:app": "cp -rf dist/* ./../android/app/src/main/assets/widget/ && rm -rf ./../android/app/src/main/assets/widget/web_adapter",
-    "android:app": "yarn build && yarn clean:android:app && yarn copy:android:app",
-    "clean:ios:app": "rm -rf ./../ios/app/widget/**",
-    "copy:ios:app": "cp -rf dist/* ./../ios/app/widget/ && rm -rf ./../ios/app/widget/web_adapter",
-    "ios:app": "yarn build && yarn clean:ios:app && yarn copy:ios:app"
+    "build:android": "cross-env PLATFORM_ENV=android vue-cli-service build",
+    "build:ios": "cross-env PLATFORM_ENV=ios vue-cli-service build"
   },
   "dependencies": {
     "echarts": "^4.1.0",
@@ -27,6 +23,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "fs-extra": "^7.0.1",
     "vue-template-compiler": "^2.5.21"
   },
   "postcss": {

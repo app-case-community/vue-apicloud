@@ -1,13 +1,114 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="maximum-scale=1,minimum-scale=1,user-scalable=0,width=device-width,initial-scale=1"><meta name=format-detection content="telephone=no,email=no,date=no,address=no"><title>frame</title><link rel=stylesheet type=text/css href=./static/apicloud/css/api.css><link rel=stylesheet type=text/css href=./static/aui/css/api.css><link rel=stylesheet type=text/css href=./static/aui/css/aui.css><link href=css/echarts.6dc57fe0.css rel=prefetch><link href=js/a-chart.c793cc67.js rel=prefetch><link href=js/echarts.fba309ab.js rel=prefetch><link href=css/tab_survey.d6b53e0b.css rel=preload as=style><link href=js/chunk-vendors.1e5ba512.js rel=preload as=script><link href=js/tab_survey.0f67caf3.js rel=preload as=script><link href=css/tab_survey.d6b53e0b.css rel=stylesheet></head><body><div id=app></div><script src=./static/apicloud/js/api.js></script><script src=./static/js/init.js></script><script>$init(function () {
-            if (api.pageParam.refresh) {
-                api.setRefreshHeaderInfo({
-                    bgColor: '#ccc',
-                    textColor: '#fff',
-                    textDown: '下拉刷新...',
-                    textUp: '松开刷新...'
-                }, function (ret, err) {
-                    //在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
-                    refreshData()
-                });
-            }
-        })</script><script src=js/chunk-vendors.1e5ba512.js></script><script src=js/tab_survey.0f67caf3.js></script></body></html>
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport content="maximum-scale=1,minimum-scale=1,user-scalable=0,width=device-width,initial-scale=1"><meta name=format-detection content="telephone=no,email=no,date=no,address=no"><link rel=icon href=favicon.ico><title>vue-ac-template</title><link rel=stylesheet type=text/css href=./static/apicloud/css/api.css><link rel=stylesheet type=text/css href=./static/apicloud/css/style.css><style>header{ background-color: #272c3b; }
+    header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #e8ebef; position: relative;font-size: 18px;  }
+    header ul li.active{ display: block; }
+    #footer{  background-color: #fbf9fb; }
+    #footer ul li{ color: #485470;  padding-top: 35px; padding-bottom: 4px; background: url() no-repeat center 4px; background-size: auto 25px; text-align: center; }
+    #footer ul li.active{ color: #6cb2e2; }
+    #footer ul li:nth-child(1){ background-image: url(./static/image/bottombtn0101.webp); }
+    #footer ul li:nth-child(2){ background-image: url(./static/image/bottombtn0201.webp); }
+    #footer ul li:nth-child(3){ background-image: url(./static/image/bottombtn0301.webp); }
+    #footer ul li:nth-child(4){ background-image: url(./static/image/bottombtn0401.webp); }
+    #footer ul li:nth-child(1).active{ background-image: url(./static/image/bottombtn0102.webp); }
+    #footer ul li:nth-child(2).active{ background-image: url(./static/image/bottombtn0202.webp); }
+    #footer ul li:nth-child(3).active{ background-image: url(./static/image/bottombtn0302.webp); }
+    #footer ul li:nth-child(4).active{ background-image: url(./static/image/bottombtn0402.webp); }
+    .flex-con{
+      overflow: auto
+    }</style><link href=css/echarts.6dc57fe0.css rel=prefetch><link href=js/a-chart.a280db66.js rel=prefetch><link href=js/echarts.a6a55832.js rel=prefetch><link href=css/tab_survey.81da50bb.css rel=preload as=style><link href=js/chunk-vendors.007071d3.js rel=preload as=script><link href=js/tab_survey.57360d27.js rel=preload as=script><link href=css/tab_survey.81da50bb.css rel=stylesheet></head><body><div id=wrap class="flex-wrap flex-vertical"><header><ul><li class="border-b active">益治理APP</li></ul></header><div id=app class=flex-con></div><div id=footer class=border-t><ul class=flex-wrap><li tapmode=hover data-tab=kanban onclick=switchBtn(this); class="flex-con active">看板</li><li tapmode=hover data-tab=map onclick=switchBtn(this); class=flex-con>地图</li><li tapmode=hover data-tab=leader onclick=switchBtn(this); class=flex-con>领导上报</li><li tapmode=hover data-tab=my onclick=switchBtn(this); class=flex-con>我的</li></ul></div></div><script src=./static/apicloud/js/api.js></script><script src=./static/js/init.js></script><script>var currentTabIdx = 0;
+    $init(function () {
+      api.setScreenOrientation({
+        orientation: 'auto'
+      });
+      $api.fixStatusBar($api.dom('header'));
+      api.setStatusBarStyle({
+        style: 'light',
+        color: '#272c3b'
+      });
+      $updateOrientation(function () {
+        if (currentTabIdx === 0) {
+          api.sendEvent({
+            name: 'kanbanSizeChange'
+          });
+        }
+        api.setFrameGroupAttr({
+          name: 'group_kanban',
+          hidden: currentTabIdx != 0
+        });
+        api.setFrameGroupAttr({
+          name: 'group',
+          rect: {
+            x: 0,
+            y: $api.dom('header').offsetHeight - 1,
+            w: api.winWidth,
+            h: $api.dom('#app').offsetHeight + 1
+          }
+        });
+      });
+      funInitGroup();
+    })
+
+    function funInitGroup() {
+      var eFootLis = $api.domAll('#footer li'),
+        frames = [];
+      for (var i = 0, len = eFootLis.length; i < len; i++) {
+        var name = 'tab_' + eFootLis[i].dataset['tab']
+        frames.push({
+          name: name,
+          url: './' + name + '.html',
+          bgColor: 'rgba(0,0,0,0)',
+          bounces: false
+        })
+      }
+      api.openFrameGroup({
+        name: 'group',
+        scrollEnabled: false,
+        rect: {
+          x: 0,
+          y: $api.dom('header').offsetHeight - 1,
+          w: api.winWidth,
+          h: $api.dom('#app').offsetHeight + 1
+        },
+        index: 0,
+        frames: frames
+      }, function (ret, err) {
+
+      });
+    }
+
+    function switchBtn(tag) {
+      if (api === undefined) return;
+      if (tag == $api.dom('#footer li.active')) return;
+      var eFootLis = $api.domAll('#footer li'),
+        // eHeaderLis = $api.domAll('header li'),
+        index = 0;
+      for (var i = 0, len = eFootLis.length; i < len; i++) {
+        if (tag == eFootLis[i]) {
+          index = i;
+        } else {
+          $api.removeCls(eFootLis[i], 'active');
+          // $api.removeCls(eHeaderLis[i], 'active');
+        }
+      }
+      $api.addCls(eFootLis[index], 'active');
+      // $api.addCls(eHeaderLis[index], 'active');
+      currentTabIdx = index;
+      if (index === 0) {
+        api.sendEvent({
+          name: 'kanbanSizeChange'
+        });
+      }
+      api.sendEvent({
+        name: 'kanbanHiddenChange',
+        extra: {
+          hidden: currentTabIdx != 0
+        }
+      })
+      api.setFrameGroupAttr({
+        name: 'group_kanban',
+        hidden: currentTabIdx != 0
+      });
+      api.setFrameGroupIndex({
+        name: 'group',
+        index: index
+      });
+    }</script><script src=js/chunk-vendors.007071d3.js></script><script src=js/tab_survey.57360d27.js></script></body></html>

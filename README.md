@@ -3,9 +3,9 @@ vue + apicloud
 
 ## 项目
 
-* h5: vue + apicloud + aui
-* android
-* ios
+* h5：vue + apicloud + aui
+* android：android 原生
+* ios：ios原生
 
 ## 运行
 
@@ -16,10 +16,10 @@ vue + apicloud
   * yarn serve
   * open [http://localhost:8080/web_adapter/adapter.html](http://localhost:8080/web_adapter/adapter.html)
 * android run：
-  * yarn android:app
+  * yarn build:android
   * 在android studio中运行app
 * ios run：
-  * yarn ios:app
+  * yarn build:ios
   * 在xcode中运行app
 
 ## 联系

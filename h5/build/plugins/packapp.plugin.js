@@ -24,6 +24,9 @@ class PackerAppPlugin {
     const options = this.options
     const originDir = options.originDir
     const distDirs = options.distDirs
+    compiler.hooks.beforeRun.tap(pluginName, (compiler) => {
+      self.beforeRun()
+    })
     compiler.hooks.done.tap(pluginName, (stats) => {
       setTimeout(() => {
         if (originDir === undefined) {
@@ -45,7 +48,7 @@ class PackerAppPlugin {
             }
             self.packerIOS(originDir, distDirs.ios)
             break
-          default:
+          case PLATFORMS.universal:
             if (distDirs.android === undefined) {
               throw new Error('distDirs.android must config')
             }
@@ -54,6 +57,8 @@ class PackerAppPlugin {
             }
             self.packerAndroid(originDir, distDirs.android)
             self.packerIOS(originDir, distDirs.ios)
+            break
+          default:
             break
         }
         console.log(`${self.appid} [${platform}] build done.`)
@@ -68,6 +73,22 @@ class PackerAppPlugin {
     return this.options.appid || 'VueApp'
   }
 
+  beforeRun () {
+    if (this.type === APP_TYPE.apicloud) {
+      const configXml = `<?xml version="1.0" encoding="UTF-8"?>
+<widget id="A0000000000000" version="0.0.1">
+<name>${this.appid}</name>
+<content src="index.html"/>
+<access origin="*"/>
+<preference name="smartUpdate" value="false"/>
+<preference name="statusBarAppearance" value="false" />
+<preference name="debug" value="true"/>
+</widget>
+      `
+      fs.writeFileSync(`${this.options.rootDir}/public/config.xml`, configXml)
+    }
+  }
+
   packerAndroid (originDir, dist) {
     switch (this.type) {
       case APP_TYPE.apicloud:
@@ -76,7 +97,8 @@ class PackerAppPlugin {
       case APP_TYPE.h5plus:
         this.packH5plusAndroid(originDir, dist)
         break
-      default:break
+      default:
+        break
     }
   }
 
@@ -88,7 +110,8 @@ class PackerAppPlugin {
       case APP_TYPE.h5plus:
         this.packH5plusIOS(originDir, dist)
         break
-      default:break
+      default:
+        break
     }
   }
 

@@ -32,6 +32,7 @@ module.exports = {
       new PackerAppPlugin({
         appid: 'VueApicloud',
         type: 'apicloud',
+        rootDir: resolve('.'),
         originDir: resolve('dist'),
         distDirs: {
           android: resolve('./../android/app/src/main/assets/widget'),

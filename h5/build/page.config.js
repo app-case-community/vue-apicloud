@@ -1,30 +1,34 @@
 const autoPages = (pages) => {
-    var ps = {}
-    pages.forEach(page => {
-        ps[page] = {
-            entry: 'src/' + page + '/index.js',
-            chunks: []
-        }
-        ps[page + '_frame'] = {
-            entry: 'src/' + page + '/main.js',
-            template: 'public/frame.html'
-        }
-    })
-    return ps
-}
-
-const autoTabs = (tabs) => {
-    var ps = {}
-    tabs.forEach(page => {
-        ps['tab_' + page] = {
-            entry: 'src/tab_' + page + '/main.js',
-            template: 'public/frame.html'
-        }
-    })
-    return ps
+  var ps = {}
+  for (let i = 0; i < pages.length; i++) {
+    const page = pages[i]
+    if (page === undefined) continue
+    var pageName = page
+    var entry = ''
+    var template = 'public/index.html'
+    if (page === '' || page === 'index') {
+      pageName = 'index'
+      entry = 'src/main.js'
+    } else {
+      var list = page.split('/')
+      if (list[1] === undefined || list[1] === '') {
+        pageName = `${list[0]}_index`
+        entry = `src/${list[0]}/main.js`
+        template = `public/${list[0]}.index.html`
+      } else {
+        pageName = `${list[0]}_${list[1]}`
+        entry = `src/${page}/main.js`
+        template = `public/${list[0]}.html`
+      }
+    }
+    ps[pageName] = {
+      entry,
+      template
+    }
+  }
+  return ps
 }
 
 module.exports = {
-    autoPages,
-    autoTabs
+  autoPages
 }

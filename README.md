@@ -17,10 +17,13 @@ vue + apicloud
   * open [http://localhost:8080/web_adapter/adapter.html](http://localhost:8080/web_adapter/adapter.html)
 * android run：
   * yarn build:android
-  * 在android studio中运行app
+  * install:android 安装，或者自己打开导入android studio运行
 * ios run：
   * yarn build:ios
   * 在xcode中运行app
+* apicloud AppLoader
+  * yarn wifi-start 启动wifi服务
+  * yarn wifi-sync 真机wifi同步
 
 ## 联系
 

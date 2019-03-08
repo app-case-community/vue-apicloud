@@ -10,7 +10,8 @@
     "wifi-stop": "apicloud wifiStop --port 23456",
     "wifi-sync": "cross-env PLATFORM_ENV=none vue-cli-service build && apicloud wifiSync --project dist --updateAll false --port 23456 && apicloud wifiLog --port 23456",
     "build:android": "cross-env PLATFORM_ENV=android vue-cli-service build",
-    "build:ios": "cross-env PLATFORM_ENV=ios vue-cli-service build"
+    "build:ios": "cross-env PLATFORM_ENV=ios vue-cli-service build",
+    "install:android": "yarn build:android && cd ../android && ./gradlew :app:installDebug"
   },
   "dependencies": {
     "echarts": "^4.1.0",

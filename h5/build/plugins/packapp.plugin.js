@@ -75,17 +75,6 @@ class PackerAppPlugin {
 
   beforeRun () {
     if (this.type === APP_TYPE.apicloud) {
-      const configXml = `<?xml version="1.0" encoding="UTF-8"?>
-<widget id="A0000000000000" version="0.0.1">
-<name>${this.appid}</name>
-<content src="index.html"/>
-<access origin="*"/>
-<preference name="smartUpdate" value="false"/>
-<preference name="statusBarAppearance" value="false" />
-<preference name="debug" value="true"/>
-</widget>
-`
-      fs.writeFileSync(`${this.options.rootDir}/public/config.xml`, configXml)
     }
   }
 
@@ -118,6 +107,7 @@ class PackerAppPlugin {
   packApicloud (originDir, dist) {
     fs.removeSync(dist)
     fs.copySync(originDir, dist)
+    fs.copyFileSync(`${this.options.rootDir}/config.xml`, `${dist}/config.xml`)
     fs.removeSync(`${dist}/web_adapter`)
   }
 

@@ -7,6 +7,9 @@ const install = (Vue) => {
         document.addEventListener('apiready', () => {
           this.$options.onLoad && this.$options.onLoad.bind(this).call()
         })
+        document.addEventListener('updateOrientation', () => {
+          this.$options.onWindowChange && this.$options.onWindowChange.bind(this).call()
+        })
       }
     }
   })

@@ -4,13 +4,16 @@
       document.dispatchEvent(new MessageEvent('apiready', {
         data: {}
       }))
-      fn()
+      fn && fn()
     }
   }
   window.$updateOrientation = function (fn) {
     var update = function () {
       setTimeout(function () {
-        fn()
+        document.dispatchEvent(new MessageEvent('updateOrientation', {
+          data: {}
+        }))
+        fn && fn()
       }, 200)
     }
     window.addEventListener('orientationchange', update, false)

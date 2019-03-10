@@ -75,6 +75,9 @@ class PackerAppPlugin {
 
   beforeRun () {
     if (this.type === APP_TYPE.apicloud) {
+      fs.copyFileSync(`${this.options.rootDir}/appconfig.xml`, `${this.options.rootDir}/public/config.xml`)
+    } else if (this.type === APP_TYPE.h5plus) {
+      fs.copyFileSync(`${this.options.rootDir}/appmanifest.json`, `${this.options.rootDir}/public/manifest.json`)
     }
   }
 
@@ -107,7 +110,6 @@ class PackerAppPlugin {
   packApicloud (originDir, dist) {
     fs.removeSync(dist)
     fs.copySync(originDir, dist)
-    fs.copyFileSync(`${this.options.rootDir}/config.xml`, `${dist}/config.xml`)
     fs.removeSync(`${dist}/web_adapter`)
   }
 

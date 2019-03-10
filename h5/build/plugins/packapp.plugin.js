@@ -84,7 +84,7 @@ class PackerAppPlugin {
 <preference name="statusBarAppearance" value="false" />
 <preference name="debug" value="true"/>
 </widget>
-      `
+`
       fs.writeFileSync(`${this.options.rootDir}/public/config.xml`, configXml)
     }
   }

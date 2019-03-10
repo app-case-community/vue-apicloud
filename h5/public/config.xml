@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget id="A0000000000000" version="0.0.1">
+<name>VueApicloud</name>
+<content src="index.html"/>
+<access origin="*"/>
+<preference name="smartUpdate" value="false"/>
+<preference name="statusBarAppearance" value="false" />
+<preference name="windowBackground" value="#FFFFFF" />
+<preference name="debug" value="true"/>
+</widget>

@@ -114,8 +114,9 @@ class PackerAppPlugin {
   }
 
   packH5plusAndroid (originDir, dist) {
-    fs.removeSync(`${dist}/apps/${this.appid}`)
-    fs.copySync(originDir, `${dist}/apps/${this.appid}/www`)
+    const assetPath = `${dist}/apps/${this.appid}`
+    fs.removeSync(assetPath)
+    fs.copySync(originDir, `${assetPath}/www`)
     const xml = `<?xml version="1.0" encoding="utf-8"?>
 <hbuilder version="1.9.9.59000" debug="true">
     <apps>
@@ -126,8 +127,9 @@ class PackerAppPlugin {
   }
 
   packH5plusIOS (originDir, dist) {
-    fs.removeSync(`${dist}/apps/${this.appid}`)
-    fs.copySync(originDir, `${dist}/apps/${this.appid}/www`)
+    const assetPath = `${dist}/apps/${this.appid}`
+    fs.removeSync(assetPath)
+    fs.copySync(originDir, `${assetPath}/www`)
     const xml = `<?xml version="1.0" encoding="utf-8"?>
 <HBuilder debug="true" version="1.9.9.59000">
   <apps>

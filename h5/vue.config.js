@@ -1,23 +1,14 @@
-const {
-  autoPages
-} = require('./build/page.config')
 const path = require('path')
 const resolve = (dir) => {
   return path.join(__dirname, dir)
 }
 const isDev = process.env.NODE_ENV === 'development'
-const PackerAppPlugin = require('./build/plugins/packapp.plugin')
+const { PackerAppPlugin } = require('./build/plugins')
 
-const pages = {
-  ...autoPages(['']),
-  ...autoPages(['tab/kanban', 'tab/map', 'tab/leader', 'tab/my']),
-  ...autoPages(['tab/survey', 'tab/accept', 'tab/dispose', 'tab/supervision'])
-}
-pages['tab_leader'].chunks = ['chunk-vendors', 'vue-router', 'tab_leader']
 module.exports = {
   publicPath: isDev ? '/' : './',
   productionSourceMap: isDev,
-  pages,
+  pages: require('./pages.config'),
   chainWebpack: (config) => {
     config.resolve.alias
       .set('~', resolve('src'))

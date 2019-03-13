@@ -1,3 +1,3 @@
 import App from './App.vue'
-import initApp from '~/common/init.vue'
+import { initApp } from '~/plugins'
 initApp(App)

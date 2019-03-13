@@ -185,7 +185,7 @@ export default {
       }
     }
   },
-  onLoad () {
+  onReady () {
     // eslint-disable-next-line no-console
     console.log('onLoad')
   },

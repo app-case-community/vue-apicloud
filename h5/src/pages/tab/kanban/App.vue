@@ -62,7 +62,7 @@ export default {
       ]
     }
   },
-  onLoad () {
+  onReady () {
     const self = this
     this.$api.dom('#slider').style.width = this.api.winWidth / this.tabs.length
     this.api.addEventListener({

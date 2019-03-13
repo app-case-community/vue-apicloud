@@ -5,7 +5,7 @@ const install = (Vue) => {
     beforeCreate () {
       if (this.$root.$children.length > 0 && this.$root.$children[0] === this) {
         document.addEventListener('apiready', () => {
-          this.$options.onLoad && this.$options.onLoad.bind(this).call()
+          this.$options.onReady && this.$options.onReady.bind(this).call()
         })
         document.addEventListener('updateOrientation', () => {
           this.$options.onWindowChange && this.$options.onWindowChange.bind(this).call()

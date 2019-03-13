@@ -64,7 +64,7 @@ export default {
       ]
     }
   },
-  onLoad () {
+  onReady () {
     this.api.setScreenOrientation({
       orientation: 'auto'
     })

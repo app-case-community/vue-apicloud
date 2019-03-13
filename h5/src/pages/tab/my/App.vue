@@ -23,7 +23,7 @@ export default {
   mounted () {
     console.log('mounted', this)
   },
-  onLoad () {
+  onReady () {
     this.winHeight = window.api.winHeight
     console.log('test')
   }

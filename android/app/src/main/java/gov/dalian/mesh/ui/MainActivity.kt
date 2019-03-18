@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.navigationBarColor = Color.parseColor("#1bb5d7")  // ActivityCompat.getColor(this, R.color.colorPrimary)
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//        window.navigationBarColor = Color.parseColor("#1bb5d7")  // ActivityCompat.getColor(this, R.color.colorPrimary)
         handler = Handler()
         setContentView(R.layout.activity_main)
         handler?.postDelayed(Runnable {

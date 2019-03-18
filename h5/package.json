@@ -14,10 +14,12 @@
     "install:android": "yarn build:android && cd ../android && ./gradlew :app:installDebug"
   },
   "dependencies": {
+    "@dcloudio/uni-ui": "^0.0.4",
     "@nutui/nutui": "^2.0.3",
     "echarts": "^4.1.0",
+    "v-miniui": "^0.0.3",
     "vant": "^1.5.9",
-    "vue": "^2.6.6",
+    "vue": "https://github.com/app-case-community/vue.git",
     "vue-echarts": "^4.0.1",
     "vue-router": "^3.0.2"
   },
@@ -36,7 +38,9 @@
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "fs-extra": "^7.0.1",
-    "vue-template-compiler": "^2.5.21"
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.9"
   },
   "postcss": {
     "plugins": {

@@ -14,6 +14,7 @@ jetpack.work = "android.arch.work:work-runtime:$versions.work"
 deps.jetpack = jetpack
 
 def android = [:]
+android.core = "androidx.core:core:$versions.support"
 android.appcompat = "androidx.appcompat:appcompat:$versions.support"
 android.constraint = "androidx.constraintlayout:constraintlayout:$versions.constraint"
 deps.android = android
@@ -21,6 +22,6 @@ deps.android = android
 ext.deps = deps
 
 def build_versions = [:]
-build_versions.min_sdk = 23
+build_versions.min_sdk = 19
 build_versions.target_sdk = 28
 ext.build_versions = build_versions

@@ -1,8 +1,12 @@
 {
-  modules: [
+  "modules": [
     {
-      name: 'mam',
-      class: 'com.uzmap.pkg.uzmodules.uzmam.UzMAM'
+      "name": "mam",
+      "class": "com.uzmap.pkg.uzmodules.uzmam.UzMAM"
+    },
+    {
+      "name": "permission",
+      "class": "store.createapp.apicloud.android.module.PermissionModule"
     }
   ]
 }

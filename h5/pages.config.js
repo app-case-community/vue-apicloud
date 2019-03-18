@@ -47,7 +47,8 @@ const pages = {
     template: 'public/index.html'
   },
   ...autoPages(['pages/tab/kanban', 'pages/tab/map', 'pages/tab/leader', 'pages/tab/my']),
-  ...autoPages(['pages/tab/survey', 'pages/tab/accept', 'pages/tab/dispose', 'pages/tab/supervision'])
+  ...autoPages(['pages/tab/survey', 'pages/tab/accept', 'pages/tab/dispose', 'pages/tab/supervision']),
+  ...autoPages(['pages/login'])
 }
 pages['tab_leader'].chunks = ['chunk-vendors', 'vue-router', 'tab_leader']
 

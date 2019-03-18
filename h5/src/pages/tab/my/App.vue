@@ -2,7 +2,7 @@
     <div>
       my
       <!-- <van-button type="default">默认按钮</van-button> -->
-      <nut-button small>去结算</nut-button>
+      <nut-button @click="login" small>login</nut-button>
     </div>
 </template>
 <style scoped>
@@ -26,6 +26,11 @@ export default {
   onReady () {
     this.winHeight = window.api.winHeight
     console.log('test')
+  },
+  methods: {
+    login () {
+      this.$page.open('./login_index.html')
+    }
   }
 }
 </script>

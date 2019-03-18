@@ -20,15 +20,18 @@ Object.defineProperty(Vue.prototype, '$api', {
 // 打开页面
 var _openw = null
 Vue.prototype.$page = {
-  open (url, title, anim, titleBarOpts) {
+  open (url, { title, anim, titleBarOpts, winOpts } = {}) {
     if (_openw) { return } // 防止快速点击
     var api = window.api
+    var name = `win_${url}`
     var params = {
+      name,
       url,
       pageParam: {
         title,
         titleBarOpts
-      }
+      },
+      ...(winOpts || {})
     }
     if (anim) {
       params.animation = {
@@ -40,8 +43,7 @@ Vue.prototype.$page = {
     api.openWin(params)
   },
   close () {
-    var api = window.api
-    api.closeWin()
+    window.api.closeWin()
   }
 }
 
